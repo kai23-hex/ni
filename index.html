@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lời Chúc Từ Cyrene</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&subset=vietnamese&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        /* --- 1. THIẾT LẬP KHÔNG GIAN KÝ ỨC --- */
+        body {
+            margin: 0; padding: 0; height: 100vh;
+            /* Gradient màu đặc trưng của Cyrene (Hồng phấn & Xanh băng) */
+            background: linear-gradient(135deg, #ffdee9 0%, #b5fffc 100%);
+            font-family: 'Quicksand', sans-serif;
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Hiệu ứng hạt lấp lánh bay lên */
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: floatUp linear infinite;
+            bottom: -10px;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+        }
+
+        /* --- 2. KHUNG THIỆP THỦY TINH --- */
+        .memory-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(15px); /* Hiệu ứng kính mờ */
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(255, 182, 193, 0.3);
+            text-align: center;
+            width: 90%; max-width: 450px;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        .avatar-frame {
+            width: 130px; height: 130px; margin: 0 auto 15px;
+            padding: 5px; border-radius: 50%;
+            background: linear-gradient(45deg, #ff9a9e, #a18cd1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .avatar {
+            width: 100%; height: 100%; border-radius: 50%;
+            object-fit: cover; border: 3px solid white;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            background: linear-gradient(to right, #e84393, #6c5ce7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em; margin: 10px 0;
+        }
+
+        p { color: #636e72; font-size: 1.1em; line-height: 1.6; }
+
+        /* --- 3. ĐỒNG HỒ ĐẾM NGƯỢC (Phong cách mềm mại) --- */
+        .countdown-container {
+            display: flex; justify-content: center; gap: 12px; margin: 25px 0;
+        }
+
+        .time-bubble {
+            background: white;
+            width: 60px; height: 70px;
+            border-radius: 15px;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            box-shadow: 0 4px 10px rgba(162, 155, 254, 0.2);
+        }
+
+        .time-bubble span {
+            font-weight: bold; font-size: 1.4em; color: #6c5ce7;
+        }
+
+        .time-bubble small {
+            font-size: 0.7em; color: #b2bec3; margin-top: 2px;
+        }
+
+        /* Nút bấm (Ẩn ban đầu) */
+        .btn-reveal {
+            background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+            color: white; border: none;
+            padding: 12px 35px; border-radius: 50px;
+            font-size: 1.1em; font-weight: bold; cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 154, 158, 0.4);
+            transition: transform 0.3s;
+            display: none; font-family: 'Quicksand', sans-serif;
+        }
+        .btn-reveal:hover { transform: scale(1.05); }
+
+        /* Khu vực quà tặng */
+        #gift-area { display: none; margin-top: 20px; animation: fadeIn 1s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    </style>
+</head>
+<body>
+
+    <script>
+        for(let i=0; i<15; i++){
+            let d = document.createElement('div');
+            d.className = 'particle';
+            d.style.left = Math.random()*100 + 'vw';
+            d.style.width = d.style.height = (Math.random()*15 + 5) + 'px';
+            d.style.animationDuration = (Math.random()*10 + 5) + 's';
+            d.style.animationDelay = Math.random()*5 + 's';
+            document.body.appendChild(d);
+        }
+    </script>
+
+    <div class="memory-card">
+        <div class="avatar-frame">
+            <img src="https://i.postimg.cc/rs4WbSWp/33.jpg" alt="Avatar" class="avatar">
+        </div>
+
+        <h1 id="title-text">Chờ Đợi Khoảnh Khắc...</h1>
+        
+        <p id="msg-text">
+            "Những ký ức đẹp nhất đang được kết tinh.<br>
+            Hãy kiên nhẫn thêm một chút nữa nhé, [Tên Bạn Ấy]..."
+        </p>
+
+        <div class="countdown-container" id="countdown">
+            <div class="time-bubble"><span id="d">00</span><small>Ngày</small></div>
+            <div class="time-bubble"><span id="h">00</span><small>Giờ</small></div>
+            <div class="time-bubble"><span id="m">00</span><small>Phút</small></div>
+            <div class="time-bubble"><span id="s">00</span><small>Giây</small></div>
+        </div>
+
+        <button class="btn-reveal" id="btn-gift" onclick="openMemory()">✦ Thu Thập Ký Ức ✦</button>
+
+        <div id="gift-area">
+            <p style="color: #6c5ce7; font-weight: bold;">Đã lưu vào Vùng Đất Ký Ức:</p>
+            🌸 1x Lời Chúc Vĩnh Cửu<br>
+            💎 1x Pha Lê Hạnh Phúc<br>
+            <small>(Luôn mỉm cười nhé! ♪)</small>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+    <source src="nhac.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // ==========================================
+        // ⚙️ CÀI ĐẶT NGÀY SINH NHẬT TẠI ĐÂY
+        // Format: Tháng Ngày, Năm Giờ:Phút:Giây
+        // ==========================================
+        
+        const birthdayTime = new Date("December 1, 2025 00:00:00").getTime();
+
+        // ==========================================
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = birthdayTime - now;
+
+            // Tính toán
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Hiển thị
+            document.getElementById("d").innerText = d < 10 ? "0"+d : d;
+            document.getElementById("h").innerText = h < 10 ? "0"+h : h;
+            document.getElementById("m").innerText = m < 10 ? "0"+m : m;
+            document.getElementById("s").innerText = s < 10 ? "0"+s : s;
+
+            // KHI ĐẾN GIỜ SINH NHẬT
+            if (distance < 0) {
+                clearInterval(timer);
+                
+                // 1. Ẩn đồng hồ
+                document.getElementById("countdown").style.display = "none";
+
+                // 2. Đổi chữ
+                const title = document.getElementById("title-text");
+                title.innerText = "Chúc Mừng Sinh Nhật!";
+                title.style.fontSize = "3em"; // Chữ to hơn
+
+                const msg = document.getElementById("msg-text");
+                msg.innerHTML = "Ngày hôm nay chính là viên pha lê lấp lánh nhất.<br>Chúc bạn tuổi mới thật rực rỡ!";
+
+                // 3. Hiện nút bấm
+                document.getElementById("btn-gift").style.display = "inline-block";
+
+                // Pháo hoa nhẹ
+                confetti({
+                    particleCount: 50, spread: 60,
+                    colors: ['#ff9a9e', '#a18cd1', '#ffffff']
+                });
+            }
+        }, 1000);
+
+        function openMemory() {
+            // Hiệu ứng pháo giấy Cyrene (Hồng & Tím)
+            var duration = 2000;
+            var end = Date.now() + duration;
+            var colors = ['#ff9a9e', '#a18cd1', '#fad0c4'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60, spread: 55, origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120, spread: 55, origin: { x: 1 },
+                    colors: colors
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+
+            // Hiện quà
+            document.getElementById("gift-area").style.display = "block";
+            
+            // Đổi nút
+            var btn = document.getElementById("btn-gift");
+            btn.innerText = "Đã Lưu Ký Ức ❤️";
+            btn.style.background = "#b2bec3";
+            btn.style.pointerEvents = "none";
+
+            // Nhạc
+            document.getElementById("bgMusic").play().catch(e => console.log("User interaction needed"));
+        }
+// --- ĐOẠN CODE SỬA LỖI NHẠC ---
+    
+    // Tự động phát nhạc ngay khi người dùng click chuột hoặc chạm vào màn hình lần đầu
+    document.addEventListener('click', function() {
+        var audio = document.getElementById("bgMusic");
+        if (audio) {
+            audio.play().then(() => {
+                console.log("Nhạc đã phát!");
+            }).catch(error => {
+                console.log("Vẫn chưa phát được: " + error);
+            });
+        }
+    }, { once: true }); // Chỉ chạy 1 lần duy nhất để không bị lặp lại
+    </script>
+</body>
+</html>
