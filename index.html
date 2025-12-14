@@ -14,8 +14,8 @@
         body {
             margin: 0; padding: 0;
             width: 100vw; height: 100vh;
-            /* Nền Gradient Pastel (Hồng - Xanh) */
-            background: linear-gradient(135deg, #ffdee9 0%, #b5fffc 100%);
+            /* Nền gradient Mát mẻ (Tím nhạt -> Xanh băng) */
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
             font-family: 'Quicksand', sans-serif;
             display: flex; justify-content: center; align-items: center;
             overflow: hidden; position: relative;
@@ -36,123 +36,118 @@
 
         /* --- 3. MÀN HÌNH CHỜ --- */
         #start-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 99999 !important; display: flex; justify-content: center; align-items: center; flex-direction: column; color: white; transition: opacity 0.5s; backdrop-filter: blur(5px); pointer-events: auto; }
-        .start-btn { margin-top: 20px; padding: 15px 40px; border-radius: 50px; background: linear-gradient(135deg, #ffdee9 0%, #b5fffc 100%); color: #57606f; border: none; font-size: 1.2em; font-weight: bold; animation: pulse 2s infinite; cursor: pointer; box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
+        .start-btn { margin-top: 20px; padding: 15px 40px; border-radius: 50px; background: linear-gradient(90deg, #89f7fe, #66a6ff); color: white; border: none; font-size: 1.2em; font-weight: bold; animation: pulse 2s infinite; cursor: pointer; box-shadow: 0 0 20px rgba(137, 247, 254, 0.6); }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
-        /* --- 4. THẺ BÀI (NỀN TỐI SANG TRỌNG) --- */
+        /* --- 4. THẺ BÀI (XANH BĂNG TUYẾT) --- */
         .memory-card {
-            /* Nền đen trong suốt (0.4) để chữ Vàng/Trắng nổi bật */
-            background: rgba(0, 0, 0, 0.4);
+            /* Nền trong suốt pha lê */
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
             
-            /* Viền vàng kim */
-            border: 4px double #a1c4fd; 
+            /* Viền Xanh Băng Kép */
+            border: 6px double #a1c4fd; 
             border-radius: 35px;
             
             padding: 30px 20px;
             text-align: center;
             width: 85vw; max-width: 400px;
-            
-            /* Căn giữa */
             margin: 0 auto;
-            z-index: 10; position: relative;
+            z-index: 10; 
+            position: relative;
             
-            transform-style: preserve-3d; 
-            transition: transform 0.1s ease-out;
-            
-            /* Bóng đổ đậm */
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            /* Góc nghiêng 35 độ */
+            transform-style: preserve-3d; transition: transform 0.1s ease-out;
             animation: cardGlow 4s infinite alternate;
         }
 
-        /* Độ dày thẻ (Màu xám tối) */
+        /* Độ dày thẻ (Màu xanh đậm phía sau) */
         .memory-card::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             border-radius: 30px;
-            background: rgba(50, 50, 50, 0.05);
+            background: #0984e3; /* Màu xanh biển đậm */
             transform: translateZ(-10px);
-            box-shadow: 0 30px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 30px 40px rgba(0,0,0,0.2);
         }
 
         .shine-layer {
             position: absolute; top: 0; left: -150%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
             transform: skewX(-25deg); pointer-events: none; transition: 0s;
             mix-blend-mode: overlay;
         }
 
         @keyframes cardGlow {
-            0% { border-color: #a1c4fd; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); }
-            100% { border-color: #c2e9fb; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); }
+            0% { box-shadow: 0 15px 35px rgba(137, 247, 254, 0.2), 0 0 15px rgba(161, 196, 253, 0.1); border-color: #a1c4fd; }
+            100% { box-shadow: 0 20px 50px rgba(102, 166, 255, 0.4), 0 0 30px rgba(137, 247, 254, 0.3); border-color: #89f7fe; }
         }
 
-        /* --- 5. NỘI DUNG (CHỮ VÀNG & TRẮNG) --- */
+        /* --- 5. NỘI DUNG --- */
         .avatar-frame {
             width: 120px; height: 120px; margin: 0 auto 15px;
             padding: 5px; border-radius: 50%;
-            background: linear-gradient(45deg, #d4af37, #f1c40f);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            /* Viền Avatar Xanh Băng */
+            background: linear-gradient(45deg, #89f7fe, #66a6ff);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transform: translateZ(30px);
         }
         .avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid #fff; }
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            /* Chữ tiêu đề màu Vàng Kim (Gold) */
-            background: linear-gradient(to right, #d4af37, #f1c40f, #d4af37);
+            /* Chữ tiêu đề Gradient Xanh */
+            background: linear-gradient(to right, #66a6ff, #89f7fe);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            font-size: 2.5em; margin: 10px 0;
+            font-size: 2.2em; margin: 10px 0;
             transform: translateZ(40px);
-            /* Bóng chữ giúp nổi bật trên nền tối */
-            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
         }
 
         p { 
-            /* Chữ nội dung màu Trắng tinh */
-            color: #ffffff; 
+            color: #2d3436; /* Chữ xám đậm dễ đọc */
             font-size: 1.1em; line-height: 1.6; 
-            transform: translateZ(25px); font-weight: 600;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            transform: translateZ(25px); font-weight: 700;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.8);
         }
 
-        /* --- ĐỒNG HỒ (SỐ VÀNG) --- */
+        /* --- ĐỒNG HỒ --- */
         .countdown-container { display: flex; justify-content: center; gap: 10px; margin: 20px 0; transform: translateZ(35px); }
         .time-bubble {
-            /* Bong bóng nền tối trong suốt */
-            background: rgba(30, 30, 30, 0.6);
+            background: rgba(255, 255, 255, 0.95);
             width: 55px; height: 65px; border-radius: 15px;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: 1px solid #d4af37;
+            box-shadow: 0 5px 15px rgba(102, 166, 255, 0.2); border: 2px solid #89f7fe;
             animation: floatBubble 3s ease-in-out infinite;
         }
         
-        /* SỐ: Màu Vàng Kim sáng */
+        /* SỐ ĐẾM NGƯỢC: MÀU XANH ĐẬM (Solid) */
         .time-bubble span { 
             font-weight: 900; 
             font-size: 1.6em; 
-            color: #f1c40f; 
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            color: #0984e3; /* Màu xanh đậm rõ nét */
+            text-shadow: none;
         }
         
-        .time-bubble small { font-size: 0.7em; color: #dcdcdc; margin-top: 3px; font-weight: 600; }
+        .time-bubble small { font-size: 0.7em; color: #636e72; margin-top: 3px; font-weight: 700; }
         
         .time-bubble:nth-child(1) { animation-delay: 0s; } .time-bubble:nth-child(2) { animation-delay: 0.5s; }
         .time-bubble:nth-child(3) { animation-delay: 1s; } .time-bubble:nth-child(4) { animation-delay: 1.5s; }
         @keyframes floatBubble { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
+        /* Nút nhận quà Xanh */
         .btn-reveal {
-            background: linear-gradient(90deg, #d4af37, #f1c40f);
-            color: #333; border: none;
+            background: linear-gradient(90deg, #89f7fe, #66a6ff);
+            color: white; border: none;
             padding: 12px 35px; border-radius: 50px;
             font-size: 1.1em; font-weight: bold; cursor: pointer;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 5px 15px rgba(102, 166, 255, 0.4);
             transition: transform 0.3s; display: none; font-family: 'Quicksand', sans-serif;
             transform: translateZ(50px);
         }
         .btn-reveal:active { transform: scale(0.95) translateZ(50px); }
         
         #gift-area { display: none; margin-top: 20px; animation: fadeIn 1s; transform: translateZ(30px); }
-        #gift-area p:first-child { color: #f1c40f; font-weight: bold; font-size: 1.2em; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+        #gift-area p:first-child { color: #0984e3; font-weight: bold; font-size: 1.2em; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     </style>
@@ -197,7 +192,7 @@
             <p>Đã lưu vào Vùng Đất Ký Ức:</p>
             🌸 1x Lời Chúc Vĩnh Cửu<br>
             💎 1x Pha Lê Hạnh Phúc<br>
-            <small style="color: #dcdcdc;">(Luôn mỉm cười nhé! ♪)</small>
+            <small style="color: #636e72;">(Luôn mỉm cười nhé! ♪)</small>
         </div>
     </div>
 
@@ -234,7 +229,7 @@
             if (x > 35) x = 35; if (x < -35) x = -35; if (y > 35) y = 35; if (y < -35) y = -35;
             card.style.transform = `rotateX(${-x}deg) rotateY(${y}deg)`;
             let shadowX = -y * 0.5; let shadowY = x * 0.5;
-            card.style.boxShadow = `${shadowX}px ${shadowY + 15}px 35px rgba(0,0,0,0.5)`;
+            card.style.boxShadow = `${shadowX}px ${shadowY + 15}px 35px rgba(102, 166, 255, 0.3)`;
             if(shine) shine.style.left = (-150 + (y * 3)) + '%';
         }
 
@@ -264,7 +259,7 @@
             if(shine) shine.style.left = (150 - (xAxis * 5)) + '%';
         });
 
-        const birthdayTime = new Date("December 13, 2025 14:33:00").getTime();
+        const birthdayTime = new Date("December 24, 2025 11:00:00").getTime();
         const timer = setInterval(function() {
             const now = new Date().getTime(); const distance = birthdayTime - now;
             const d = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -280,8 +275,8 @@
                 const title = document.getElementById("title-text"); 
                 title.innerText = "Chúc Mừng Sinh Nhật!"; title.style.fontSize = "3em";
                 
-                // Màu chữ chúc mừng Sinh Nhật Vàng Kim
-                title.style.background = "linear-gradient(to right, #d4af37, #f1c40f)";
+                // Màu chữ chúc mừng Gradient Xanh
+                title.style.background = "linear-gradient(to right, #66a6ff, #89f7fe)";
                 title.style.webkitBackgroundClip = "text";
                 title.style.webkitTextFillColor = "transparent";
 
@@ -298,13 +293,14 @@
             var interval = setInterval(function() {
                 var timeLeft = end - Date.now(); if (timeLeft <= 0) return clearInterval(interval);
                 var particleCount = 50 * (timeLeft / duration);
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#f1c40f', '#d4af37', '#ffffff'] }));
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#f1c40f', '#d4af37', '#ffffff'] }));
+                // Pháo hoa Xanh/Bạc/Trắng
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#89f7fe', '#66a6ff', '#ffffff'] }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#89f7fe', '#66a6ff', '#ffffff'] }));
             }, 250);
         }
 
         function openMemory() {
-            var colors = ['#f1c40f', '#d4af37', '#ffffff'];
+            var colors = ['#89f7fe', '#66a6ff', '#ffffff'];
             (function frame() {
                 confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: colors });
                 confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: colors });
@@ -317,8 +313,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
